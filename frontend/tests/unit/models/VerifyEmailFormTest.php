@@ -46,7 +46,7 @@ class VerifyEmailFormTest extends \Codeception\Test\Unit {
 		$model->email = 'not_exist@example.com';
 		$model->token = 'not_exist_token';
 		expect($model->validate())->false();
-		expect($model->getFirstError('email'))->equals(Yii::t('app', "The email is not found. Maybe your token has expired"));
+		expect($model->getFirstError('email'))->equals(Yii::t('app', "The email is not found. Maybe your token has expired."));
 	}
 
 	public function testWrongToken() {

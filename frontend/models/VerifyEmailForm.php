@@ -81,7 +81,7 @@ class VerifyEmailForm extends Model {
 		switch ($attribute) {
 		case 'email':
 			if (!$session->has($this->$attribute)) {
-				$this->addError($attribute, Yii::t('app', "The email is not found. Maybe your token has expired"));
+				$this->addError($attribute, Yii::t('app', "The email is not found. Maybe your token has expired."));
 				return false;
 			}
 			break;

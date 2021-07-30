@@ -239,7 +239,7 @@ class SiteController extends Controller {
 			return $this->redirect('signup');
 		}
 		$user = Yii::$app->user->identity;
-		$user->email = $this->email;
+		$user->email = $model->email;
 		if (!$user->save()) {
 			$session->setFlash('error', $user->firstErrors);
 		} else {
