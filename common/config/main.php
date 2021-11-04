@@ -12,6 +12,7 @@ return [
 		'db' => [
 			'class' => 'yii\db\Connection',
 			'charset' => 'utf8',
+			'password' => $yii_env['DB_PASSWORD'],
 		],
 		'mailer' => [
 			'class' => 'yii\swiftmailer\Mailer',
