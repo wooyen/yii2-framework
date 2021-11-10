@@ -24,7 +24,7 @@ class UserVerifyEmailCest {
 	}
 
 	public function _before(FunctionalTester $I) {
-		Yii::$app->user->login($I->grabFixture('user', 0));
+		$I->amLoggedInAs(1);
 		Yii::$app->session->setFlash('somebody@example.com', 'a_random_token');
 	}
 

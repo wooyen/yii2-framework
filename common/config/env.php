@@ -1,16 +1,19 @@
 <?php
-$pattern = '/^YII2_(.+)$/';
-$yii_env = [];
-foreach ($_SERVER as $k => $v) {
-	if (preg_match($pattern, $k, $matches) > 0 && getenv($k) == $v) {
-		$yii_env[$matches[1]] = $v;
+$env_name = 'YII2_INI_FILE';
+$default_ini_file = '.yii2.ini';
+$ini_file = getenv('YII2_INI_FILE');
+if (empty($ini_file)) {
+	if (!empty($home = getenv('HOME')) && is_readable("$home/$default_ini_file")) {
+		$ini_file = "$home/$default_ini_file";
+	} else if (is_readable("/etc/$default_ini_file")) {
+		$ini_file = "/etc/$default_ini_file";
 	}
+} else if (!is_readable($ini_file)) {
+	die("The specified ini file $ini_file does not exist or is not readable.");
 }
-if (array_key_exists('INI_FILE', $yii_env)) {
-	$ini = @parse_ini_file($yii_env['INI_FILE']);
-	if ($ini !== false) {
-		$yii_env = array_merge($yii_env, $ini);
-	}
+$yii_env = @parse_ini_file($ini_file);
+if ($yii_env === false) {
+	$yii_env = [];
 }
 if (!array_key_exists('ENV', $yii_env)) {
 	$yii_env['ENV'] = 'dev';
