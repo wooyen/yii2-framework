@@ -9,7 +9,7 @@ return yii\helpers\ArrayHelper::merge(
 	[
 		'components' => [
 			'request' => [
-				'cookieValidationKey' => strtr(base64_encode(openssl_random_pseudo_bytes(24)), '+/=', '_-.'),
+				'cookieValidationKey' => "common-codeception_" . @$yii_env['COOKIE_VALIDATION_KEY'],
 			],
 		],
 	]
