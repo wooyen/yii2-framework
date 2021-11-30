@@ -17,12 +17,10 @@ require __DIR__ . '/console/config/bootstrap.php';
 $config = yii\helpers\ArrayHelper::merge(
 	require __DIR__ . '/common/config/main.php',
 	require __DIR__ . "/common/config/main-{$yii_env['ENV']}.php",
-	require __DIR__ . '/common/config/test.php',
-	require __DIR__ . "/common/config/test-{$yii_env['ENV']}.php",
+	require __DIR__ . "/common/config/codeception-{$yii_env['ENV']}.php",
 	require __DIR__ . '/console/config/main.php',
 	require __DIR__ . "/console/config/main-{$yii_env['ENV']}.php",
-	require __DIR__ . '/console/config/test.php',
-	require __DIR__ . "/console/config/test-{$yii_env['ENV']}.php"
+	require __DIR__ . "/console/config/codeception-{$yii_env['ENV']}.php"
 );
 
 $application = new yii\console\Application($config);
